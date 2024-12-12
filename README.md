@@ -124,5 +124,27 @@
             li.remove();
         }
     </script>
+    // كود لحفظ البيانات عند الخروج من الصفحة
+window.addEventListener("beforeunload", function () {
+    // استبدل 'yourData' بالبيانات التي تريد حفظها
+    const dataToSave = {
+        name: document.getElementById("name").value, // افترض وجود عنصر إدخال باسم id "name"
+        email: document.getElementById("email").value // افترض وجود عنصر إدخال باسم id "email"
+    };
+
+    // تخزين البيانات في Local Storage
+    localStorage.setItem("formData", JSON.stringify(dataToSave));
+});
+
+// كود لاسترجاع البيانات عند فتح الموقع مجددًا
+document.addEventListener("DOMContentLoaded", function () {
+    const savedData = localStorage.getItem("formData");
+    if (savedData) {
+        const data = JSON.parse(savedData);
+        document.getElementById("name").value = data.name || ""; // ملء الحقل إذا كان موجودًا
+        document.getElementById("email").value = data.email || ""; // ملء الحقل إذا كان موجودًا
+    }
+});
+<script>
 </body>
 </html>
