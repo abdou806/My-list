@@ -97,54 +97,5 @@
         <ul id="taskList"></ul>
     </div>
     <script>
-        function addTask() {
-            const taskInput = document.getElementById("taskInput");
-            const categoryInput = document.getElementById("categoryInput");
-            const taskList = document.getElementById("taskList");
-
-            if (taskInput.value.trim() === "") {
-                alert("يرجى إدخال مهمة.");
-                return;
-            }
-
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <span>${taskInput.value} <span class="category">(${categoryInput.value})</span></span>
-                <button onclick="deleteTask(this)">حذف</button>
-            `;
-            taskList.appendChild(li);
-
-            // تنظيف الحقول بعد الإضافة
-            taskInput.value = "";
-            categoryInput.selectedIndex = 0;
-        }
-
-        function deleteTask(button) {
-            const li = button.parentElement;
-            li.remove();
-        }
-    </script>
-    // كود لحفظ البيانات عند الخروج من الصفحة
-window.addEventListener("beforeunload", function () {
-    // استبدل 'yourData' بالبيانات التي تريد حفظها
-    const dataToSave = {
-        name: document.getElementById("name").value, // افترض وجود عنصر إدخال باسم id "name"
-        email: document.getElementById("email").value // افترض وجود عنصر إدخال باسم id "email"
-    };
-
-    // تخزين البيانات في Local Storage
-    localStorage.setItem("formData", JSON.stringify(dataToSave));
-});
-
-// كود لاسترجاع البيانات عند فتح الموقع مجددًا
-document.addEventListener("DOMContentLoaded", function () {
-    const savedData = localStorage.getItem("formData");
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        document.getElementById("name").value = data.name || ""; // ملء الحقل إذا كان موجودًا
-        document.getElementById("email").value = data.email || ""; // ملء الحقل إذا كان موجودًا
-    }
-});
-<script>
 </body>
 </html>
